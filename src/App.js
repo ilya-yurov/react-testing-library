@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+/* import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -25,5 +25,25 @@ function App() {
 		</div>
 	);
 }
+
+export default App; */
+
+import React from 'react'
+import {BrowserRouter, Link, Route, Routes} from 'react-router-dom'
+import AboutPage from './Pages/AboutPage';
+import MainPage from './Pages/MainPage';
+
+const App = (props) => {
+	return (
+		<div>
+			<Link to='/' data-testid='main-link'>main</Link>
+			<Link to='/about' data-testid='about-link'>about</Link>
+			<Routes>
+				<Route path='/' element={<MainPage/>} />
+				<Route path='/about' element={<AboutPage/>} />
+			</Routes>
+		</div>
+	);
+};
 
 export default App;

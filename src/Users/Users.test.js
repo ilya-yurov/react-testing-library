@@ -33,6 +33,5 @@ describe('ASYNC COMP LOADING! Users component test', () => {
 		const users = await screen.findAllByTestId('user-item');
 		expect(users.length).toBe(3);
 		expect(axios.get).toBeCalledTimes(1);
-		screen.debug();
 	})
 })
