@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('React render tests', () => {
@@ -10,7 +11,6 @@ describe('React render tests', () => {
 		expect(helloWorldElem).toBeInTheDocument();
 		expect(button).toBeInTheDocument();
 		expect(input).toMatchSnapshot();
-		screen.debug();
 		});
 
 	test('async. findBy testing. style', async () => {
@@ -26,16 +26,20 @@ describe('React render tests', () => {
 		expect(screen.queryByTestId('toogle-elem')).toBeNull();
 		fireEvent.click(button);
 		expect(screen.queryByTestId('toogle-elem')).toBeInTheDocument();
+		fireEvent.click(button);
+		expect(screen.queryByTestId('toogle-elem')).toBeNull();
 	});
 	test('Input testing', () => {
 		render(<App />);
 		const input = screen.getByPlaceholderText(/input value/i);
 		expect(screen.getByTestId('value-elem')).toContainHTML('');
-		fireEvent.input(input, {
+		//! Artificial event (Missing events, like "Mouse down/up, Key down etc.")
+		/* fireEvent.input(input, {
 			target: {value: 'Samlple text'}
-		})
-		expect(screen.getByTestId('value-elem')).toContainHTML('Samlple text');
-		screen.debug();
+		}) */
+		//! An event close to the user. Keystrokes are processed, etc.
+		userEvent.type(input, '123123')
+		expect(screen.getByTestId('value-elem')).toContainHTML('123123');
 	});
 })
 
