@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`React render tests Is react renders App.js 1`] = `
-<input
-  placeholder="input value....."
-  type="text"
-/>
-`;

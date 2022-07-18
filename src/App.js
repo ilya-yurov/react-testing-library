@@ -30,18 +30,20 @@ export default App; */
 
 import React from 'react'
 import {BrowserRouter, Link, Route, Routes} from 'react-router-dom'
+import AppRouter from './AppRouter/AppRouter';
 import AboutPage from './Pages/AboutPage';
+import ErrorPage from './Pages/ErrorPage';
 import MainPage from './Pages/MainPage';
+import UsersDeatailsPage from './Pages/UsersDeatailsPage';
+import Users from './Users/Users';
 
 const App = (props) => {
 	return (
 		<div>
-			<Link to='/' data-testid='main-link'>main</Link>
-			<Link to='/about' data-testid='about-link'>about</Link>
-			<Routes>
-				<Route path='/' element={<MainPage/>} />
-				<Route path='/about' element={<AboutPage/>} />
-			</Routes>
+			<Link to='/' data-testid='main-link'>main </Link>
+			<Link to='/about' data-testid='about-link'>about </Link>
+			<Link to='/users' data-testid='users-link'>users</Link>
+			<AppRouter />
 		</div>
 	);
 };

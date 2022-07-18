@@ -12,10 +12,21 @@ describe('Integration tests', () => {
 		);
 		const mainLink = screen.getByTestId('main-link');
 		const aboutLink = screen.getByTestId('about-link');
+		const usersLink = screen.getByTestId('users-link');
 		userEvent.click(aboutLink);
 		expect(screen.getByTestId('about-page')).toBeInTheDocument();
 		userEvent.click(mainLink);
 		expect(screen.getByTestId('main-page')).toBeInTheDocument();
+		userEvent.click(usersLink);
+		expect(screen.getByTestId('users-page')).toBeInTheDocument();
+	});
+	test('Error page render when link is wrong.', () => {
+		render(
+		<MemoryRouter initialEntries={['/somewronglink']}>
+			<App />
+		</MemoryRouter>
+		);
+		expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
 	});
 })
 
